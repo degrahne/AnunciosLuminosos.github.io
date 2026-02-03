@@ -47,6 +47,8 @@ p {
     height: 45vh;
     width: 60%;
     background: url(imagen.jpeg) center center / cover no-repeat;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 /* CONTENEDOR HERO */
@@ -296,4 +298,5 @@ iframe {
   color: white;
   cursor: pointer;
   font-weight: bold;
+
 }
