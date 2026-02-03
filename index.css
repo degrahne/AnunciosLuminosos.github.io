@@ -107,7 +107,7 @@ p {
 
     .imagen {
         width: 58%;
-        height: 30vh;
+        height: auto;
         min-height: 30vh;
         background-position: center center;
     }
@@ -353,6 +353,7 @@ iframe {
     display: flex;
     justify-content: center; /* Centra horizontalmente */
 }
+
 
 
 
