@@ -1,0 +1,299 @@
+/* RESET */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* BASE */
+html, body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 165%;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+
+    background: url(fondo.jpg) center center / cover no-repeat;
+    background-color: #0f172a;
+
+    color: #1c1f26;
+}
+
+/* TEXTOS */
+h1 {
+    font-size: 100;
+    text-align: center;
+    color: #0f172a;
+    letter-spacing: 0.6px;
+}
+
+h3 {
+    color: #111827;
+    font-weight: 600;
+}
+
+p {
+    font-size: 100;
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+/* HERO */
+.hero {
+    display: flex;
+    min-height: 40vh;
+}
+
+/* IMAGEN PRINCIPAL */
+.imagen {
+    height: 45vh;
+    width: 60%;
+    background: url(imagen.jpeg) center center / cover no-repeat;
+}
+
+/* CONTENEDOR HERO */
+.contenedor {
+    text-align: center;
+    padding: 20px;
+    width: 40%;
+    height: 45vh;
+
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(6px);
+}
+
+/* BOTÓN PRINCIPAL */
+.boton-redireccion {
+    padding: 12px 28px;
+    display: inline-block;
+    margin-top: 40px;
+    align-self: center;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+
+    color: #ffffff;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+
+    box-shadow: 0 8px 20px rgba(217, 119, 6, 0.4);
+    transition: all 0.3s ease;
+}
+
+.boton-redireccion:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #d97706, #b45309);
+    box-shadow: 0 12px 30px rgba(217, 119, 6, 0.55);
+}
+
+/* CARRUSEL */
+.caja {
+    width: 100%;
+    height: 70vh;
+
+    background: rgba(255, 255, 255, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel {
+    width: 90%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s ease;
+}
+
+.carousel-track img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+/* TARJETAS */
+.tarjetas {
+    display: flex;
+    gap: 20px;
+    padding: 30px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+}
+
+.tarjetas::-webkit-scrollbar {
+    display: none;
+}
+
+.tarjetas {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.tarjeta {
+    min-width: 320px;
+    height: 460px;
+
+    background: #ffffff;
+    border-radius: 25px;
+    overflow: hidden;
+    flex-shrink: 0;
+
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+    transition: transform 0.3s ease;
+}
+
+.tarjeta:hover {
+    transform: translateY(-8px);
+}
+
+.tarjeta-img {
+    width: 100%;
+    height: 60%;
+    background-size: cover;
+    background-position: center;
+}
+
+.tarjeta-contenido {
+    padding: 18px;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+/* TÍTULO */
+.tarjeta-contenido h3 {
+    margin: 0;
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+    color: #111827;
+}
+
+/* TEXTO QUE SE ADAPTA A LA TARJETA */
+.tarjeta-contenido p {
+    margin: 0;
+    font-size: clamp(0.9rem, 1vw, 1rem);
+    line-height: 1.4;
+    color: #6b7280;
+
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;   /* Máx 3 líneas */
+    -webkit-box-orient: vertical;
+}
+
+/* CONTACTO */
+.contactos {
+    display: flex;
+    min-height: 40vh;
+}
+
+.cajaC {
+    width: 50%;
+    height: 50vh;
+    padding: 20px;
+
+    background: rgba(255, 255, 255, 0.95);
+    text-align: center;
+}
+
+iframe {
+    width: 50%;
+    height: 50vh;
+    border: none;
+}
+
+/* ESPACIADOR */
+.espacio {
+    width: 100%;
+    height: 5vh;
+}
+
+/* BOTONES REDES */
+.boton {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    border-radius: 50%;
+    background-color: #f1f5f9;
+
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+
+.boton:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.boton-whatsapp {
+    background-image: url(image2.png);
+}
+
+.boton-facebook {
+    background-image: url(image1.png);
+}
+
+.boton-gmail {
+    background-image: url(image.png);
+}
+
+/* ABOUT */
+.aboutMe {
+    width: 100%;
+    height: 45vh;
+    padding: 20px;
+
+    background: rgba(255, 255, 255, 0.95);
+    text-align: center;
+}
+
+.modal-galeria {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.95);
+  display: none;
+  z-index: 9999;
+  overflow-y: auto;
+  padding: 40px;
+}
+
+.galeria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.galeria-grid img {
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.galeria-grid img:hover {
+  transform: scale(1.05);
+}
+
+.cerrar {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
