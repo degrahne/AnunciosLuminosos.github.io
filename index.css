@@ -1,5 +1,5 @@
 /* ==========================================================================
-   RESET
+   RESET y base
    ========================================================================== */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -9,99 +9,111 @@ html, body {
     margin: 0;
     padding: 0;
     width: 100%;
-    min-height: 100vh;
+    height: 100%;               /* mejor que min-height aquí para full viewport */
     overflow-x: hidden;
-    /* Fondo fijo suele fallar en iOS → mejor quitar fixed o usar trick */
-    background: #0f172a url(fondo.jpg) center center / cover no-repeat scroll; /* ← scroll en vez de fixed */
-}
-
-/* Corrige los font-size inválidos */
-h1 {
-    font-size: clamp(2.2rem, 8vw, 4.5rem);   /* escala bien en móvil y desktop */
-    text-align: center;
-    color: #0f172a;
-    letter-spacing: 0.6px;
-    margin: 0.4em 0;
-}
-
-p {
-    font-size: clamp(1rem, 3.5vw, 1.1rem);
-    color: #4b5563;
-    line-height: 1.6;
-    margin: 1em 0;
+    background: #0f172a url(fondo.jpg) center center / cover no-repeat scroll;
 }
 
 /* ==========================================================================
-   HERO - muy mejorado para móvil
+   HERO - Mobile first
    ========================================================================== */
 .hero {
     display: flex;
     flex-direction: column;
-    min-height: 70vh;           /* más alto para que no quede tan chiquito */
-    align-items: center;
-    justify-content: center;    /* centra verticalmente mejor */
-    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: #0f172a;
 }
 
 .imagen {
-    position: absolute;
-    inset: 0;
     width: 100%;
-    height: 100%;
-    background: url(imagen.jpeg) center center / cover no-repeat;
-    z-index: -1;                /* detrás del contenido */
+    height: 50vh;
+    min-height: 300px;
+    background: url(imagen.jpeg) center top / cover no-repeat;   /* center top = más natural */
+    flex-shrink: 0;
 }
 
 .contenedor {
-    position: relative;
-    z-index: 2;
     width: 100%;
-    max-width: 90%;
-    padding: 2rem 1.2rem;
-    background: rgba(255, 255, 255, 0.88);
+    padding: 1.8rem 1.2rem;
+    background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(8px);
-    border-radius: 16px;
     text-align: center;
-    margin: 1.5rem auto;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.2rem;
 }
 
-/* Botón principal */
+/* Textos escalables */
+h1 {
+    font-size: clamp(2.4rem, 9vw, 4rem);
+    margin: 0.4em 0 0.6em;
+    line-height: 1.1;
+    color: #0f172a;
+    letter-spacing: 0.4px;
+}
+
+.contenedor p {
+    font-size: clamp(1.1rem, 4.2vw, 1.25rem);
+    line-height: 1.5;
+    margin: 0.6em 0;
+    color: #4b5563;
+}
+
 .boton-redireccion {
-    padding: 0.9rem 2rem;
-    font-size: clamp(1rem, 4vw, 1.15rem);
-    margin-top: 1.8rem;
-    /* ... resto igual */
+    padding: 1rem 2.2rem;
+    font-size: clamp(1.1rem, 4.5vw, 1.3rem);
+    margin: 1.5rem auto 0.5rem;
+    align-self: center;
+    /* mantén aquí el resto de tus estilos del botón: color, gradiente, shadow, hover, etc. */
 }
 
-/* Media query desktop */
+/* Desktop */
 @media (min-width: 768px) {
     .hero {
         flex-direction: row;
         min-height: 85vh;
-        justify-content: space-between;
     }
 
     .imagen {
-        position: static;
-        width: 55–60%;
+        width: 58%;
         height: auto;
         min-height: 85vh;
+        background-position: center center;
     }
 
     .contenedor {
-        width: 40%;
-        max-width: 480px;
-        padding: 3.5rem 2.5rem;
+        width: 42%;
+        max-width: 520px;
+        padding: 3rem 2.5rem;
         margin: 0;
+        justify-content: center;
+    }
+
+    h1 {
+        font-size: clamp(3.5rem, 6vw, 5.5rem);
+    }
+
+    .contenedor p {
+        font-size: 1.25rem;
     }
 }
 
+/* Evita espacios extra debajo del hero */
+.hero + * {
+    margin-top: 0 !important;
+}
+
 /* ==========================================================================
-   Otras secciones - evita alturas fijas en vh
+   Otras secciones
    ========================================================================== */
 .caja {
     width: 100%;
-    min-height: 60vh;           /* ← min-height en vez de height fija */
+    min-height: 60vh;
     background: rgba(255, 255, 255, 0.95);
     display: flex;
     justify-content: center;
@@ -114,23 +126,28 @@ p {
     gap: 1.5rem;
     padding: 1.5rem;
     overflow-x: auto;
-    scroll-snap-type: x mandatory; /* opcional: snap al deslizar */
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
 }
 
 .tarjeta {
-    min-width: 300px;           /* un poco más pequeño en móvil si quieres */
+    min-width: 300px;
     max-width: 340px;
-    height: auto;               /* deja que crezca según contenido */
+    height: auto;
     min-height: 420px;
-    /* ... resto igual */
+    /* aquí van tus otros estilos: background, border-radius, shadow, hover, etc. */
 }
 
 .tarjeta-img {
-    height: 55–65%;             /* ajusta según tus imágenes */
+    width: 100%;
+    height: 55%;                /* corrige el rango 55–65% → usa % o valor fijo */
+    background-size: cover;
+    background-position: center;
 }
 
-/* Contacto - stacking natural en móvil */
+/* Contacto */
 .contactos {
+    display: flex;
     flex-direction: column;
 }
 
@@ -150,9 +167,9 @@ iframe {
     }
 }
 
-/* Evita scroll horizontal fantasma */
+/* Smooth scroll en iOS para cualquier scroll horizontal */
 body, .tarjetas, .carousel {
-    -webkit-overflow-scrolling: touch; /* smooth scroll en iOS */
+    -webkit-overflow-scrolling: touch;
 }
 
 
