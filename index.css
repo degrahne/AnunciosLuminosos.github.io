@@ -46,7 +46,7 @@ p {
 .imagen {
     height: 45vh;
     width: 60%;
-    background: url(imagen.jpeg) center center / cover no-repeat;
+    background: url(imagen.jpeg) center center / contain no-repeat;
     background-size: 100% 100%;
 }
 
@@ -299,4 +299,5 @@ iframe {
   font-weight: bold;
 
 }
+
 
