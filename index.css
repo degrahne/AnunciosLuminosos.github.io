@@ -51,11 +51,13 @@ p {
 
 /* CONTENEDOR TEXTO HERO */
 .contenedor {
-    padding: 2.5rem;
-    background: rgba(255, 255, 255, 0.92);
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
     text-align: center;
+    padding: 20px;
+    width: 40%;
+    height: 45vh;
+
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(6px);
 }
 
 /* BOTÓN PRINCIPAL */
@@ -395,6 +397,7 @@ iframe {
         display: block;
     }
 }
+
 
 
 
