@@ -51,20 +51,9 @@ p {
 }
 @media (max-width: 768px) {
     .imagen {
-        width: 100%;       /* ocupa todo el ancho */
-        height: 60vh;      /* más alto para que se vea más grande */
+        width: 100%;
+        height: 25cm;   /* más grande en móvil */
         background-size: cover;
-    }
-
-    .contenedor {
-        width: 90%;        /* contenedor de texto más estrecho */
-        height: auto;      /* se ajusta al contenido */
-        padding: 20px;
-    }
-
-    .hero {
-        flex-direction: column; /* imagen arriba, texto abajo */
-        min-height: auto;
     }
 }
 
@@ -317,6 +306,7 @@ iframe {
   font-weight: bold;
 
 }
+
 
 
 
