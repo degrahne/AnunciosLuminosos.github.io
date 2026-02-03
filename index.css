@@ -44,7 +44,7 @@ p {
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-height: 100vh;
+    min-height: 30vh;
     margin: 0;
     padding: 0;
     background: #0f172a;
@@ -346,6 +346,7 @@ iframe {
   cursor: pointer;
   font-weight: bold;
 }
+
 
 
 
