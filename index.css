@@ -49,6 +49,24 @@ p {
     background: url(imagen.jpeg) center center / contain no-repeat;
     background-size: 100% 100%;
 }
+@media (max-width: 768px) {
+    .imagen {
+        width: 100%;       /* ocupa todo el ancho */
+        height: 60vh;      /* más alto para que se vea más grande */
+        background-size: cover;
+    }
+
+    .contenedor {
+        width: 90%;        /* contenedor de texto más estrecho */
+        height: auto;      /* se ajusta al contenido */
+        padding: 20px;
+    }
+
+    .hero {
+        flex-direction: column; /* imagen arriba, texto abajo */
+        min-height: auto;
+    }
+}
 
 /* CONTENEDOR HERO */
 .contenedor {
@@ -299,5 +317,6 @@ iframe {
   font-weight: bold;
 
 }
+
 
 
