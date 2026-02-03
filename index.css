@@ -6,22 +6,23 @@
 /* BASE */
 html, body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 165%;
+    width: 100vw;
     margin: 0;
     padding: 0;
-    height: 100%;
-    width: 100vw;
+
     background: url(fondo.jpg) center center / cover no-repeat;
     background-color: #0f172a;
+
     color: #1c1f26;
 }
 
 /* TEXTOS */
 h1 {
-    font-size: clamp(3.2rem, 9vw, 7rem);
+    font-size: 100;
     text-align: center;
     color: #0f172a;
     letter-spacing: 0.6px;
-    margin: 0.4em 0;
 }
 
 h3 {
@@ -30,7 +31,7 @@ h3 {
 }
 
 p {
-    font-size: 1.05rem;
+    font-size: 100;
     color: #4b5563;
     line-height: 1.6;
 }
@@ -39,17 +40,17 @@ p {
 .hero {
     display: flex;
     min-height: 40vh;
-    align-items: center;
 }
 
+/* IMAGEN PRINCIPAL */
 .imagen {
     height: 45vh;
     width: 60%;
     background: url(imagen.jpeg) center center / contain no-repeat;
-    background-size: cover;   /* mejor en la mayoría de casos */
+    /*background-size: 100% 100%;*/
 }
 
-/* CONTENEDOR TEXTO HERO */
+/* CONTENEDOR HERO */
 .contenedor {
     text-align: center;
     padding: 20px;
@@ -65,12 +66,15 @@ p {
     padding: 12px 28px;
     display: inline-block;
     margin-top: 40px;
+    align-self: center;
     border-radius: 30px;
     text-decoration: none;
     font-weight: 600;
     letter-spacing: 0.5px;
+
     color: #ffffff;
     background: linear-gradient(135deg, #f59e0b, #d97706);
+
     box-shadow: 0 8px 20px rgba(217, 119, 6, 0.4);
     transition: all 0.3s ease;
 }
@@ -85,6 +89,7 @@ p {
 .caja {
     width: 100%;
     height: 70vh;
+
     background: rgba(255, 255, 255, 0.95);
     display: flex;
     justify-content: center;
@@ -132,10 +137,12 @@ p {
 .tarjeta {
     min-width: 320px;
     height: 460px;
+
     background: #ffffff;
     border-radius: 25px;
     overflow: hidden;
     flex-shrink: 0;
+
     box-shadow: 0 15px 35px rgba(0,0,0,0.12);
     transition: transform 0.3s ease;
 }
@@ -160,28 +167,25 @@ p {
     text-align: center;
 }
 
+/* TÍTULO */
 .tarjeta-contenido h3 {
-    margin: 0 0 8px 0;
+    margin: 0;
+    margin-bottom: 8px;
     font-size: 1.2rem;
+    color: #111827;
 }
 
+/* TEXTO QUE SE ADAPTA A LA TARJETA */
 .tarjeta-contenido p {
     margin: 0;
     font-size: clamp(0.9rem, 1vw, 1rem);
     line-height: 1.4;
     color: #6b7280;
+
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 3;   /* Máx 3 líneas */
     -webkit-box-orient: vertical;
-}
-
-/* ABOUT */
-.aboutMe {
-    width: 100%;
-    padding: 2.5rem 1.5rem;
-    background: rgba(255, 255, 255, 0.95);
-    text-align: center;
 }
 
 /* CONTACTO */
@@ -192,13 +196,16 @@ p {
 
 .cajaC {
     width: 50%;
-    padding: 2rem;
+    height: 50vh;
+    padding: 20px;
+
     background: rgba(255, 255, 255, 0.95);
     text-align: center;
 }
 
 iframe {
     width: 50%;
+    height: 50vh;
     border: none;
 }
 
@@ -213,14 +220,16 @@ iframe {
     width: 50px;
     height: 50px;
     display: inline-block;
+
     background-size: 60%;
     background-position: center;
     background-repeat: no-repeat;
+
     border-radius: 50%;
     background-color: #f1f5f9;
+
     box-shadow: 0 6px 15px rgba(0,0,0,0.15);
     transition: all 0.3s ease;
-    margin: 0 12px;
 }
 
 .boton:hover {
@@ -228,175 +237,68 @@ iframe {
     box-shadow: 0 10px 25px rgba(0,0,0,0.25);
 }
 
-.boton-whatsapp { background-image: url(image2.png); }
-.boton-facebook  { background-image: url(image1.png); }
-.boton-gmail     { background-image: url(image.png); }
+.boton-whatsapp {
+    background-image: url(image2.png);
+}
 
-/* MODAL GALERÍA */
+.boton-facebook {
+    background-image: url(image1.png);
+}
+
+.boton-gmail {
+    background-image: url(image.png);
+}
+
+/* ABOUT */
+.aboutMe {
+    width: 100%;
+    height: 45vh;
+    padding: 20px;
+
+    background: rgba(255, 255, 255, 0.95);
+    text-align: center;
+}
+
 .modal-galeria {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.95);
-    display: none;
-    z-index: 9999;
-    overflow-y: auto;
-    padding: 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.95);
+  display: none;
+  z-index: 9999;
+  overflow-y: auto;
+  padding: 40px;
 }
 
 .galeria-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
 }
 
 .galeria-grid img {
-    width: 100%;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.3s;
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s;
 }
 
 .galeria-grid img:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .cerrar {
-    position: fixed;
-    top: 20px;
-    right: 30px;
-    font-size: 40px;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
 }
 
-/* ────────────────────────────────────────────────
-   MEDIA QUERY - MÓVIL (≤ 768px)
-───────────────────────────────────────────────── */
-@media (max-width: 768px) {
-
-    html {
-        font-size: 17px;   /* base más grande */
-    }
-
-    body {
-        font-size: 1.15rem;
-        line-height: 1.6;
-    }
-
-    h1 {
-        font-size: 3.4rem;
-    }
-
-    h3 {
-        font-size: 1.85rem;
-    }
-
-    p {
-        font-size: 1.18rem;
-    }
-
-    /* Hero: imagen arriba + texto abajo */
-    .hero {
-        flex-direction: column;
-        min-height: auto;
-    }
-
-    .imagen {
-        order: 1;
-        width: 100%;
-        height: 55vh;
-        background-size: cover;
-        background-position: center;
-    }
-
-.contenedor {
-    text-align: center;
-    padding: 20px;
-    width: 40%;
-    height: 45vh;
-
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(6px);
-}
-
-    .contenedor h1 {
-        margin-top: 0.3em;
-    }
-
-    /* Tarjetas más grandes */
-    .tarjetas {
-        gap: 28px;
-        padding: 28px 16px;
-    }
-
-    .tarjeta {
-        min-width: 360px;
-        height: 540px;
-        border-radius: 28px;
-    }
-
-    .tarjeta-img {
-        height: 58%;
-    }
-
-    .tarjeta-contenido {
-        padding: 26px 22px;
-    }
-
-    .tarjeta-contenido h3 {
-        font-size: 1.7rem;
-    }
-
-    .tarjeta-contenido p {
-        font-size: 1.12rem;
-        -webkit-line-clamp: 4;
-    }
-
-    /* Carrusel */
-    .caja {
-        height: 65vh;
-    }
-
-    /* About y Contacto */
-    .aboutMe {
-        padding: 2.5rem 1.6rem;
-    }
-
-    .contactos {
-        flex-direction: column;
-    }
-
-    .cajaC, iframe {
-        width: 100%;
-        min-height: 45vh;
-    }
-
-    .cajaC {
-        padding: 2.5rem 1.5rem;
-    }
-
-    /* Botones redes */
-    .boton {
-        width: 64px;
-        height: 64px;
-        background-size: 65%;
-        margin: 0 16px;
-    }
-
-    /* Espaciador */
-    .espacio {
-        height: 6vh;
-    }
-
-    /* Botón principal y galería */
-    .boton-redireccion {
-        padding: 1rem 2.4rem;
-        font-size: 1.25rem;
-        margin: 2rem auto;
-        display: block;
-    }
-}
 
 
 
