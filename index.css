@@ -310,15 +310,15 @@ iframe {
         background-position: center;
     }
 
-    .contenedor {
-        order: 2;
-        width: 100%;
-        background: rgba(255, 255, 255, 0.96);
-        padding: 2.8rem 1.6rem 3.2rem;
-        border-radius: 0;
-        box-shadow: none;
-        text-align: center;
-    }
+.contenedor {
+    text-align: center;
+    padding: 20px;
+    width: 40%;
+    height: 45vh;
+
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(6px);
+}
 
     .contenedor h1 {
         margin-top: 0.3em;
@@ -397,6 +397,7 @@ iframe {
         display: block;
     }
 }
+
 
 
 
