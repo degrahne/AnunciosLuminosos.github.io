@@ -1,149 +1,258 @@
 /* ==========================================================================
-   RESET
+   RESET y base
    ========================================================================== */
 *, *::before, *::after {
     box-sizing: border-box;
 }
+
 html, body {
     margin: 0;
     padding: 0;
     width: 100%;
-    min-height: 100vh;
+    height: 100%;
     overflow-x: hidden;
-    /* Fondo fijo suele fallar en iOS → mejor quitar fixed o usar trick */
-    background: #0f172a url(fondo.jpg) center center / cover no-repeat scroll; /* ← scroll en vez de fixed */
+    background: #0f172a url(fondo.jpg) center center / cover no-repeat scroll;
 }
+
 /* ==========================================================================
-   HERO - Mobile first: imagen arriba, texto debajo, sin espacios muertos
+   TEXTOS GENERALES (ajustados para escalar mejor)
+   ========================================================================== */
+h1 {
+    font-size: clamp(2.4rem, 9vw, 5rem);
+    margin: 0.4em 0 0.6em;
+    line-height: 1.1;
+    letter-spacing: 0.4px;
+}
+
+h3 {
+    color: #111827;
+    font-weight: 600;
+    margin: 0.8em 0 0.4em;
+}
+
+p {
+    font-size: clamp(1.05rem, 3.8vw, 1.2rem);
+    line-height: 1.6;
+    color: #4b5563;
+    margin: 0.8em 0;
+}
+
+/* ==========================================================================
+   HERO - Mobile first: imagen arriba, texto debajo
    ========================================================================== */
 .hero {
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-height: 100vh; /* ocupa buena parte de la pantalla inicial */
+    min-height: 100vh;
     margin: 0;
     padding: 0;
-    background: #0f172a; /* color de respaldo por si la img falla */
+    background: #0f172a;
 }
+
 .imagen {
     width: 100%;
-    height: 50vh; /* ~mitad de pantalla en la mayoría de móviles */
-    min-height: 300px; /* evita que quede ridículamente pequeña */
-    background: url(imagen.jpeg) center center / cover no-repeat;
-    background-position: center top; /* prioriza la parte superior de la imagen */
-    flex-shrink: 0; /* no se achica */
+    height: 50vh;
+    min-height: 320px;
+    background: url(imagen.jpeg) center top / cover no-repeat;
+    flex-shrink: 0;
 }
+
 .contenedor {
     width: 100%;
-    padding: 1.8rem 1.2rem; /* menos padding arriba/abajo para reducir espacios */
+    padding: 2rem 1.25rem;
     background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(8px);
     text-align: center;
-    flex-grow: 1; /* ocupa el espacio restante */
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* centra verticalmente el contenido */
-    gap: 1.2rem; /* espacio entre título, texto y botón */
+    justify-content: center;
+    gap: 1.3rem;
 }
-/* Textos que escalan BIEN en móviles */
-h1 {
-    font-size: clamp(2.4rem, 9vw, 4rem); /* grande en móviles, no se desborda en pc */
-    margin: 0.4em 0 0.6em;
-    line-height: 1.1;
+
+.contenedor h1 {
     color: #0f172a;
-    letter-spacing: 0.4px;
 }
-.contenedor p {
-    font-size: clamp(1.1rem, 4.2vw, 1.25rem); /* más grande y legible */
-    line-height: 1.5;
-    margin: 0.6em 0;
-    color: #4b5563;
-}
+
 .boton-redireccion {
     padding: 1rem 2.2rem;
+    display: inline-block;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    box-shadow: 0 8px 20px rgba(217, 119, 6, 0.4);
+    transition: all 0.3s ease;
     font-size: clamp(1.1rem, 4.5vw, 1.3rem);
-    margin: 1.5rem auto 0.5rem; /* menos margen arriba/abajo */
+    margin: 1.2rem auto 0.8rem;
     align-self: center;
-    /* ... resto de estilos del botón igual */
 }
-/* ==========================================================================
-   Desktop (≥768px) → mantiene casi lo mismo que tenías antes
-   ========================================================================== */
+
+.boton-redireccion:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #d97706, #b45309);
+    box-shadow: 0 12px 30px rgba(217, 119, 6, 0.55);
+}
+
+/* Desktop - hero side by side */
 @media (min-width: 768px) {
     .hero {
         flex-direction: row;
-        min-height: 85vh; /* un poco más alto en pc, se ve mejor */
+        min-height: 85vh;
     }
+
     .imagen {
         width: 58%;
         height: auto;
         min-height: 85vh;
-        background-position: center center; /* en pc centrado normal */
+        background-position: center center;
     }
+
     .contenedor {
         width: 42%;
         max-width: 520px;
-        padding: 3rem 2.5rem;
+        padding: 3.5rem 2.5rem;
         margin: 0;
         justify-content: center;
     }
-    /* Fuentes en pc se mantienen razonables */
-    h1 {
-        font-size: clamp(3.5rem, 6vw, 5.5rem);
+
+    .contenedor h1 {
+        font-size: clamp(3.8rem, 6.5vw, 5.8rem);
     }
+
     .contenedor p {
         font-size: 1.25rem;
     }
 }
-/* Evita espacios fantasma en body/html */
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    overflow-x: hidden;
-}
-/* Si hay mucho espacio blanco debajo del hero en móvil, fuerza que el siguiente elemento pegue */
+
+/* Evita espacio extra debajo del hero */
 .hero + * {
     margin-top: 0 !important;
 }
+
 /* ==========================================================================
-   Otras secciones - evita alturas fijas en vh
+   CARRUSEL (mantenido casi igual)
    ========================================================================== */
 .caja {
     width: 100%;
-    min-height: 60vh; /* ← min-height en vez de height fija */
+    min-height: 65vh;
     background: rgba(255, 255, 255, 0.95);
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 2rem 0;
 }
+
+.carousel {
+    width: 90%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s ease;
+}
+
+.carousel-track img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   TARJETAS (mantenido casi igual)
+   ========================================================================== */
 .tarjetas {
     display: flex;
     gap: 1.5rem;
-    padding: 1.5rem;
+    padding: 1.5rem 1rem;
     overflow-x: auto;
-    scroll-snap-type: x mandatory; /* opcional: snap al deslizar */
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;          /* Firefox */
 }
+
+.tarjetas::-webkit-scrollbar {
+    display: none;                  /* Chrome/Safari */
+}
+
 .tarjeta {
-    min-width: 300px; /* un poco más pequeño en móvil si quieres */
+    min-width: 300px;
     max-width: 340px;
-    height: auto; /* deja que crezca según contenido */
+    height: auto;
     min-height: 420px;
-    /* ... resto igual */
+    background: #ffffff;
+    border-radius: 25px;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+    transition: transform 0.3s ease;
 }
+
+.tarjeta:hover {
+    transform: translateY(-8px);
+}
+
 .tarjeta-img {
-    height: 55–65%; /* ajusta según tus imágenes */
+    width: 100%;
+    height: 58%;
+    background-size: cover;
+    background-position: center;
 }
-/* Contacto - stacking natural en móvil */
+
+.tarjeta-contenido {
+    padding: 1.2rem;
+    height: 42%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.tarjeta-contenido h3 {
+    margin: 0 0 0.6rem;
+    font-size: 1.2rem;
+}
+
+.tarjeta-contenido p {
+    margin: 0;
+    font-size: clamp(0.95rem, 3vw, 1.05rem);
+    line-height: 1.45;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+/* ==========================================================================
+   CONTACTO
+   ========================================================================== */
 .contactos {
+    display: flex;
     flex-direction: column;
 }
-.cajaC,
+
+.cajaC {
+    width: 100%;
+    min-height: 45vh;
+    padding: 2rem 1.2rem;
+    background: rgba(255, 255, 255, 0.95);
+    text-align: center;
+}
+
 iframe {
     width: 100%;
     min-height: 45vh;
+    border: none;
 }
+
 @media (min-width: 768px) {
     .contactos {
         flex-direction: row;
@@ -153,10 +262,57 @@ iframe {
         width: 50%;
     }
 }
-/* Evita scroll horizontal fantasma */
-body, .tarjetas, .carousel {
-    -webkit-overflow-scrolling: touch; /* smooth scroll en iOS */
+
+/* ==========================================================================
+   BOTONES REDES (mantenido)
+   ========================================================================== */
+.boton {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    background-color: #f1f5f9;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+    margin: 0 0.8rem;
 }
+
+.boton:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+/* .boton-whatsapp, etc. — mantén tus urls de imágenes */
+.boton-whatsapp { background-image: url(image2.png); }
+.boton-facebook  { background-image: url(image1.png); }
+.boton-gmail     { background-image: url(image.png); }
+
+/* ==========================================================================
+   ABOUT / OTRAS SECCIONES QUE TENÍAS
+   ========================================================================== */
+.aboutMe {
+    width: 100%;
+    min-height: 45vh;
+    padding: 2rem 1.2rem;
+    background: rgba(255, 255, 255, 0.95);
+    text-align: center;
+}
+
+/* Modal galería (si lo usas) */
+.modal-galeria {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    display: none;
+    z-index: 9999;
+    overflow-y: auto;
+    padding: 40px;
+}
+
+/* ... puedes agregar el resto de .galeria-grid, .cerrar, etc. si los usas */
 
 
 
