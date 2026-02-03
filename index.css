@@ -2,19 +2,20 @@
 *, *::before, *::after {
     box-sizing: border-box;
 }
-
-/* BASE */
 html, body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    height: 165%;
-    width: 100vw;
     margin: 0;
     padding: 0;
-
-    background: url(fondo.jpg) center center / cover no-repeat;
+    width: 100%;
+    min-height: 100vh;           /* mejor que 165% */
+    overflow-x: hidden;          /* evita scroll horizontal fantasma */
+    background: url(fondo.jpg) center center / cover no-repeat fixed;
     background-color: #0f172a;
+}
 
-    color: #1c1f26;
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 /* TEXTOS */
@@ -36,31 +37,45 @@ p {
     line-height: 1.6;
 }
 
-/* HERO */
 .hero {
     display: flex;
-    min-height: 40vh;
+    flex-direction: column;           /* en móvil se apilan */
+    min-height: 60vh;
+    align-items: center;
 }
 
-/* IMAGEN PRINCIPAL */
 .imagen {
-    height: 45vh;
-    width: 60%;
-    background: url(imagen.jpeg) center center / contain no-repeat;
-    background-size: 100% 100%;
+    width: 100%;
+    height: 40vh;                     /* o min-height: 35vh */
+    background: url(imagen.jpeg) center center / cover no-repeat;
+    background-size: cover;           /* mejor que contain para hero */
 }
 
-/* CONTENEDOR HERO */
 .contenedor {
-    text-align: center;
-    padding: 20px;
-    width: 40%;
-    height: 45vh;
-
+    width: 100%;
+    padding: 20px 15px;
     background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(6px);
+    text-align: center;
 }
 
+@media (min-width: 768px) {
+    .hero {
+        flex-direction: row;
+        min-height: 70vh;
+    }
+    
+    .imagen {
+        width: 60%;
+        height: auto;
+        min-height: 70vh;
+    }
+    
+    .contenedor {
+        width: 40%;
+        padding: 40px 30px;
+    }
+}
 /* BOTÓN PRINCIPAL */
 .boton-redireccion {
     padding: 12px 28px;
@@ -297,6 +312,35 @@ iframe {
   color: white;
   cursor: pointer;
   font-weight: bold;
+}
+
+.contactos {
+    display: flex;
+    flex-direction: column;          /* apila en móvil */
+    min-height: auto;
+}
+
+.cajaC,
+iframe {
+    width: 100%;
+    min-height: 40vh;
+}
+
+@media (min-width: 768px) {
+    .contactos {
+        flex-direction: row;
+    }
+    
+    .cajaC,
+    iframe {
+        width: 50%;
+    }
+}
+
+@media (max-width: 600px) {
+    h1 { font-size: 2.2rem; }
+    p  { font-size: 1rem; }
+    .boton-redireccion { padding: 12px 30px; font-size: 1.1rem; }
 }
 
 
