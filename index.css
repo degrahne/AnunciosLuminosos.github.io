@@ -1,91 +1,85 @@
 /* ==========================================================================
-   RESET y base
+   RESET
    ========================================================================== */
 *, *::before, *::after {
     box-sizing: border-box;
 }
-
 html, body {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100%;               /* mejor que min-height aquí para full viewport */
+    min-height: 100vh;
     overflow-x: hidden;
-    background: #0f172a url(fondo.jpg) center center / cover no-repeat scroll;
+    /* Fondo fijo suele fallar en iOS → mejor quitar fixed o usar trick */
+    background: #0f172a url(fondo.jpg) center center / cover no-repeat scroll; /* ← scroll en vez de fixed */
 }
-
 /* ==========================================================================
-   HERO - Mobile first
+   HERO - Mobile first: imagen arriba, texto debajo, sin espacios muertos
    ========================================================================== */
 .hero {
     display: flex;
     flex-direction: column;
     width: 100%;
-    min-height: 100vh;
+    min-height: 100vh; /* ocupa buena parte de la pantalla inicial */
     margin: 0;
     padding: 0;
-    background: #0f172a;
+    background: #0f172a; /* color de respaldo por si la img falla */
 }
-
 .imagen {
     width: 100%;
-    height: 50vh;
-    min-height: 300px;
-    background: url(imagen.jpeg) center top / cover no-repeat;   /* center top = más natural */
-    flex-shrink: 0;
+    height: 50vh; /* ~mitad de pantalla en la mayoría de móviles */
+    min-height: 300px; /* evita que quede ridículamente pequeña */
+    background: url(imagen.jpeg) center center / cover no-repeat;
+    background-position: center top; /* prioriza la parte superior de la imagen */
+    flex-shrink: 0; /* no se achica */
 }
-
 .contenedor {
     width: 100%;
-    padding: 1.8rem 1.2rem;
+    padding: 1.8rem 1.2rem; /* menos padding arriba/abajo para reducir espacios */
     background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(8px);
     text-align: center;
-    flex-grow: 1;
+    flex-grow: 1; /* ocupa el espacio restante */
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 1.2rem;
+    justify-content: center; /* centra verticalmente el contenido */
+    gap: 1.2rem; /* espacio entre título, texto y botón */
 }
-
-/* Textos escalables */
+/* Textos que escalan BIEN en móviles */
 h1 {
-    font-size: clamp(2.4rem, 9vw, 4rem);
+    font-size: clamp(2.4rem, 9vw, 4rem); /* grande en móviles, no se desborda en pc */
     margin: 0.4em 0 0.6em;
     line-height: 1.1;
     color: #0f172a;
     letter-spacing: 0.4px;
 }
-
 .contenedor p {
-    font-size: clamp(1.1rem, 4.2vw, 1.25rem);
+    font-size: clamp(1.1rem, 4.2vw, 1.25rem); /* más grande y legible */
     line-height: 1.5;
     margin: 0.6em 0;
     color: #4b5563;
 }
-
 .boton-redireccion {
     padding: 1rem 2.2rem;
     font-size: clamp(1.1rem, 4.5vw, 1.3rem);
-    margin: 1.5rem auto 0.5rem;
+    margin: 1.5rem auto 0.5rem; /* menos margen arriba/abajo */
     align-self: center;
-    /* mantén aquí el resto de tus estilos del botón: color, gradiente, shadow, hover, etc. */
+    /* ... resto de estilos del botón igual */
 }
-
-/* Desktop */
+/* ==========================================================================
+   Desktop (≥768px) → mantiene casi lo mismo que tenías antes
+   ========================================================================== */
 @media (min-width: 768px) {
     .hero {
         flex-direction: row;
-        min-height: 85vh;
+        min-height: 85vh; /* un poco más alto en pc, se ve mejor */
     }
-
     .imagen {
         width: 58%;
         height: auto;
         min-height: 85vh;
-        background-position: center center;
+        background-position: center center; /* en pc centrado normal */
     }
-
     .contenedor {
         width: 42%;
         max-width: 520px;
@@ -93,70 +87,63 @@ h1 {
         margin: 0;
         justify-content: center;
     }
-
+    /* Fuentes en pc se mantienen razonables */
     h1 {
         font-size: clamp(3.5rem, 6vw, 5.5rem);
     }
-
     .contenedor p {
         font-size: 1.25rem;
     }
 }
-
-/* Evita espacios extra debajo del hero */
+/* Evita espacios fantasma en body/html */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+}
+/* Si hay mucho espacio blanco debajo del hero en móvil, fuerza que el siguiente elemento pegue */
 .hero + * {
     margin-top: 0 !important;
 }
-
 /* ==========================================================================
-   Otras secciones
+   Otras secciones - evita alturas fijas en vh
    ========================================================================== */
 .caja {
     width: 100%;
-    min-height: 60vh;
+    min-height: 60vh; /* ← min-height en vez de height fija */
     background: rgba(255, 255, 255, 0.95);
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 2rem 0;
 }
-
 .tarjetas {
     display: flex;
     gap: 1.5rem;
     padding: 1.5rem;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory; /* opcional: snap al deslizar */
 }
-
 .tarjeta {
-    min-width: 300px;
+    min-width: 300px; /* un poco más pequeño en móvil si quieres */
     max-width: 340px;
-    height: auto;
+    height: auto; /* deja que crezca según contenido */
     min-height: 420px;
-    /* aquí van tus otros estilos: background, border-radius, shadow, hover, etc. */
+    /* ... resto igual */
 }
-
 .tarjeta-img {
-    width: 100%;
-    height: 55%;                /* corrige el rango 55–65% → usa % o valor fijo */
-    background-size: cover;
-    background-position: center;
+    height: 55–65%; /* ajusta según tus imágenes */
 }
-
-/* Contacto */
+/* Contacto - stacking natural en móvil */
 .contactos {
-    display: flex;
     flex-direction: column;
 }
-
 .cajaC,
 iframe {
     width: 100%;
     min-height: 45vh;
 }
-
 @media (min-width: 768px) {
     .contactos {
         flex-direction: row;
@@ -166,10 +153,9 @@ iframe {
         width: 50%;
     }
 }
-
-/* Smooth scroll en iOS para cualquier scroll horizontal */
+/* Evita scroll horizontal fantasma */
 body, .tarjetas, .carousel {
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch; /* smooth scroll en iOS */
 }
 
 
