@@ -51,117 +51,152 @@ p {
 }
 
 
+
 @media (max-width: 768px) {
 
-    /* =============================================
-       GENERAL - Todo el texto más grande y legible
-    ============================================= */
+    /* Base más grande para todo el texto en móvil */
     html {
-        font-size: 18px;          /* base más grande para móviles */
+        font-size: 17.5px;          /* ≈ base 16px → ~17.5–18px efectivo */
     }
 
-    body, p, li, a, span, button {
-        font-size: 1.1rem;        /* ~19-20px efectivo */
-        line-height: 1.55;
+    body {
+        font-size: 1.15rem;         /* texto general más grande */
+        line-height: 1.6;
     }
 
     h1 {
-        font-size: 3.2rem;        /* mucho más grande que antes */
-        margin: 0.4em 0;
+        font-size: 3.4rem;          /* título principal muy grande */
+        line-height: 1.1;
+        margin: 0.5em 0 0.4em;
     }
 
-    h2 { font-size: 2.4rem; }
-    h3 { font-size: 1.8rem; }
-    h4 { font-size: 1.5rem; }
+    h3 {
+        font-size: 1.85rem;
+    }
 
-    /* Hero - Imagen arriba + texto abajo con fondo claro */
+    p {
+        font-size: 1.18rem;
+    }
+
+    /* Hero → imagen arriba | texto abajo con fondo claro */
     .hero {
         flex-direction: column;
         min-height: auto;
     }
 
     .imagen {
-        order: 1;                   /* primero la imagen */
+        order: 1;
         width: 100%;
-        height: 55vh;               /* un poco más alta */
-        background-size: cover;     /* mejor en móviles */
+        height: 58vh;               /* altura generosa pero no excesiva */
+        background-size: cover;     /* mejor que contain en móvil */
         background-position: center;
     }
 
-    /* Contenedor de texto (asumiendo que está dentro de .hero) */
-    .hero .texto-hero,             /* ← cambia el selector según tu HTML */
-    .hero > div:not(.imagen) {     /* alternativa genérica */
+    .contenedor {
         order: 2;
         width: 100%;
-        background: rgba(255, 255, 255, 0.94);
-        padding: 2.5rem 1.5rem;
+        background: rgba(255, 255, 255, 0.96);
+        padding: 2.8rem 1.8rem 3rem;
         color: #1f2937;
+        text-align: center;
     }
 
-    /* Tarjetas - más grandes en móvil */
+    .contenedor h1 {
+        margin-top: 0;
+    }
+
+    .boton-redireccion {
+        padding: 1rem 2.4rem;
+        font-size: 1.25rem;
+        margin-top: 2rem;
+    }
+
+    /* Tarjetas más grandes en móvil */
     .tarjetas {
-        gap: 24px;
-        padding: 24px 16px;
+        gap: 28px;
+        padding: 28px 18px;
     }
 
     .tarjeta {
-        min-width: 340px;           /* más ancha */
-        height: 520px;              /* más alta */
-        border-radius: 28px;
+        min-width: 360px;           /* más ancha que antes */
+        height: 540px;              /* más alta para que quepa bien el texto */
+        border-radius: 30px;
+        box-shadow: 0 18px 40px rgba(0,0,0,0.14);
     }
 
     .tarjeta-img {
-        height: 58%;                /* proporción ajustada */
+        height: 58%;                /* más espacio para imagen */
     }
 
     .tarjeta-contenido {
-        padding: 24px 20px;
+        padding: 28px 24px;
     }
 
     .tarjeta-contenido h3 {
-        font-size: 1.55rem;
+        font-size: 1.7rem;
+        margin-bottom: 1rem;
     }
 
     .tarjeta-contenido p {
-        font-size: 1.05rem;
-        -webkit-line-clamp: 4;      /* un poco más de texto visible */
+        font-size: 1.12rem;
+        line-height: 1.55;
+        -webkit-line-clamp: 4;      /* permite ver 1–2 líneas más */
     }
 
-    /* Carrusel */
+    /* Carrusel un poco más alto */
     .caja {
-        height: 60vh;
+        height: 65vh;
     }
 
-    /* Contacto */
+    /* Sección "Por qué Nosotros?" */
+    .aboutMe {
+        padding: 2.5rem 1.8rem;
+    }
+
+    .aboutMe h1 {
+        font-size: 2.8rem;
+    }
+
+    .aboutMe p {
+        font-size: 1.2rem;
+    }
+
+    /* Contacto → todo apilado */
     .contactos {
         flex-direction: column;
     }
 
     .cajaC, iframe {
         width: 100%;
-        height: 45vh;
+        min-height: 48vh;
     }
 
-    /* Botones redes (un poco más grandes) */
+    .cajaC {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .cajaC h1 {
+        font-size: 2.9rem;
+    }
+
+    /* Botones redes más grandes */
     .boton {
-        width: 60px;
-        height: 60px;
+        width: 64px;
+        height: 64px;
+        background-size: 65%;
     }
 
     /* Espaciadores */
     .espacio {
-        height: 6vh;
+        height: 7vh;
     }
 
-    /* Botón principal */
-    .boton-redireccion {
-        padding: 16px 36px;
-        font-size: 1.15rem;
-        margin-top: 2.5rem;
+    /* Botón de galería */
+    a.boton-redireccion {
+        font-size: 1.3rem;
+        padding: 1.1rem 2.6rem;
     }
 }
-
-
 
 
 
@@ -404,6 +439,7 @@ iframe {
   font-weight: bold;
 
 }
+
 
 
 
