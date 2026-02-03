@@ -50,14 +50,15 @@ p {
     /*background-size: 100% 100%;*/
 }
 @media (max-width: 768px) {
+    /* Imagen y layout */
     .imagen {
-        width: 100%;     /* ocupa todo el ancho */
-        height: 60vh;    /* más alto */
+        width: 100%;
+        height: 60vh;
         background-size: cover;
     }
 
     .hero {
-        flex-direction: column; /* imagen arriba, texto abajo */
+        flex-direction: column;
         min-height: auto;
     }
 
@@ -65,6 +66,16 @@ p {
         width: 90%;
         height: auto;
         padding: 20px;
+    }
+
+    /* Escalar texto 50% más grande */
+    body, h1, h2, h3, h4, h5, h6, p, a, span, li, button {
+        font-size: 1.5em; /* 1.5x del tamaño original */
+    }
+
+    /* Ajuste para textos que usan clamp */
+    .tarjeta-contenido p {
+        font-size: clamp(1.35rem, 1.5vw, 1.5rem); /* 1.5x de lo original */
     }
 }
 
@@ -306,6 +317,7 @@ iframe {
   font-weight: bold;
 
 }
+
 
 
 
