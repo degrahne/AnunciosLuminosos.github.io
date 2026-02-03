@@ -47,25 +47,25 @@ p {
     height: 45vh;
     width: 60%;
     background: url(imagen.jpeg) center center / contain no-repeat;
-    background-size: 100% 100%;
+    /*background-size: 100% 100%;*/
 }
 @media (max-width: 768px) {
     .imagen {
-        width: 100%;
-        height: 25cm;   /* más grande en móvil */
+        width: 100%;     /* ocupa todo el ancho */
+        height: 60vh;    /* más alto */
         background-size: cover;
     }
-}
 
-/* CONTENEDOR HERO */
-.contenedor {
-    text-align: center;
-    padding: 20px;
-    width: 40%;
-    height: 45vh;
+    .hero {
+        flex-direction: column; /* imagen arriba, texto abajo */
+        min-height: auto;
+    }
 
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(6px);
+    .contenedor {
+        width: 90%;
+        height: auto;
+        padding: 20px;
+    }
 }
 
 /* BOTÓN PRINCIPAL */
@@ -306,6 +306,7 @@ iframe {
   font-weight: bold;
 
 }
+
 
 
 
