@@ -1,347 +1,160 @@
-/* RESET */
+/* ==========================================================================
+   RESET
+   ========================================================================== */
 *, *::before, *::after {
     box-sizing: border-box;
 }
+
 html, body {
     margin: 0;
     padding: 0;
     width: 100%;
-    min-height: 100vh;           /* mejor que 165% */
-    overflow-x: hidden;          /* evita scroll horizontal fantasma */
-    background: url(fondo.jpg) center center / cover no-repeat fixed;
-    background-color: #0f172a;
+    min-height: 100vh;
+    overflow-x: hidden;
+    /* Fondo fijo suele fallar en iOS → mejor quitar fixed o usar trick */
+    background: #0f172a url(fondo.jpg) center center / cover no-repeat scroll; /* ← scroll en vez de fixed */
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* TEXTOS */
+/* Corrige los font-size inválidos */
 h1 {
-    font-size: 100;
+    font-size: clamp(2.2rem, 8vw, 4.5rem);   /* escala bien en móvil y desktop */
     text-align: center;
     color: #0f172a;
     letter-spacing: 0.6px;
-}
-
-h3 {
-    color: #111827;
-    font-weight: 600;
+    margin: 0.4em 0;
 }
 
 p {
-    font-size: 100;
+    font-size: clamp(1rem, 3.5vw, 1.1rem);
     color: #4b5563;
     line-height: 1.6;
+    margin: 1em 0;
 }
 
+/* ==========================================================================
+   HERO - muy mejorado para móvil
+   ========================================================================== */
 .hero {
     display: flex;
-    flex-direction: column;           /* en móvil se apilan */
-    min-height: 60vh;
+    flex-direction: column;
+    min-height: 70vh;           /* más alto para que no quede tan chiquito */
     align-items: center;
-}
-
-.imagen {
-    width: 100%;
-    height: 40vh;                     /* o min-height: 35vh */
-    background: url(imagen.jpeg) center center / cover no-repeat;
-    background-size: cover;           /* mejor que contain para hero */
-}
-
-.contenedor {
-    width: 100%;
-    padding: 20px 15px;
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(6px);
-    text-align: center;
-}
-
-@media (min-width: 768px) {
-    .hero {
-        flex-direction: row;
-        min-height: 70vh;
-    }
-    
-    .imagen {
-        width: 60%;
-        height: auto;
-        min-height: 70vh;
-    }
-    
-    .contenedor {
-        width: 40%;
-        padding: 40px 30px;
-    }
-}
-/* BOTÓN PRINCIPAL */
-.boton-redireccion {
-    padding: 12px 28px;
-    display: inline-block;
-    margin-top: 40px;
-    align-self: center;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-
-    color: #ffffff;
-    background: linear-gradient(135deg, #f59e0b, #d97706);
-
-    box-shadow: 0 8px 20px rgba(217, 119, 6, 0.4);
-    transition: all 0.3s ease;
-}
-
-.boton-redireccion:hover {
-    transform: translateY(-2px);
-    background: linear-gradient(135deg, #d97706, #b45309);
-    box-shadow: 0 12px 30px rgba(217, 119, 6, 0.55);
-}
-
-/* CARRUSEL */
-.caja {
-    width: 100%;
-    height: 70vh;
-
-    background: rgba(255, 255, 255, 0.95);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.carousel {
-    width: 90%;
-    height: 100%;
-    overflow: hidden;
+    justify-content: center;    /* centra verticalmente mejor */
     position: relative;
 }
 
-.carousel-track {
-    display: flex;
-    height: 100%;
-    transition: transform 0.5s ease;
-}
-
-.carousel-track img {
+.imagen {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    flex-shrink: 0;
+    background: url(imagen.jpeg) center center / cover no-repeat;
+    z-index: -1;                /* detrás del contenido */
 }
 
-/* TARJETAS */
+.contenedor {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 90%;
+    padding: 2rem 1.2rem;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    text-align: center;
+    margin: 1.5rem auto;
+}
+
+/* Botón principal */
+.boton-redireccion {
+    padding: 0.9rem 2rem;
+    font-size: clamp(1rem, 4vw, 1.15rem);
+    margin-top: 1.8rem;
+    /* ... resto igual */
+}
+
+/* Media query desktop */
+@media (min-width: 768px) {
+    .hero {
+        flex-direction: row;
+        min-height: 85vh;
+        justify-content: space-between;
+    }
+
+    .imagen {
+        position: static;
+        width: 55–60%;
+        height: auto;
+        min-height: 85vh;
+    }
+
+    .contenedor {
+        width: 40%;
+        max-width: 480px;
+        padding: 3.5rem 2.5rem;
+        margin: 0;
+    }
+}
+
+/* ==========================================================================
+   Otras secciones - evita alturas fijas en vh
+   ========================================================================== */
+.caja {
+    width: 100%;
+    min-height: 60vh;           /* ← min-height en vez de height fija */
+    background: rgba(255, 255, 255, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+}
+
 .tarjetas {
     display: flex;
-    gap: 20px;
-    padding: 30px;
+    gap: 1.5rem;
+    padding: 1.5rem;
     overflow-x: auto;
-    scroll-behavior: smooth;
-}
-
-.tarjetas::-webkit-scrollbar {
-    display: none;
-}
-
-.tarjetas {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+    scroll-snap-type: x mandatory; /* opcional: snap al deslizar */
 }
 
 .tarjeta {
-    min-width: 320px;
-    height: 460px;
-
-    background: #ffffff;
-    border-radius: 25px;
-    overflow: hidden;
-    flex-shrink: 0;
-
-    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
-    transition: transform 0.3s ease;
-}
-
-.tarjeta:hover {
-    transform: translateY(-8px);
+    min-width: 300px;           /* un poco más pequeño en móvil si quieres */
+    max-width: 340px;
+    height: auto;               /* deja que crezca según contenido */
+    min-height: 420px;
+    /* ... resto igual */
 }
 
 .tarjeta-img {
-    width: 100%;
-    height: 60%;
-    background-size: cover;
-    background-position: center;
+    height: 55–65%;             /* ajusta según tus imágenes */
 }
 
-.tarjeta-contenido {
-    padding: 18px;
-    height: 40%;
-    display: flex;
+/* Contacto - stacking natural en móvil */
+.contactos {
     flex-direction: column;
-    justify-content: center;
-    text-align: center;
-}
-
-/* TÍTULO */
-.tarjeta-contenido h3 {
-    margin: 0;
-    margin-bottom: 8px;
-    font-size: 1.2rem;
-    color: #111827;
-}
-
-/* TEXTO QUE SE ADAPTA A LA TARJETA */
-.tarjeta-contenido p {
-    margin: 0;
-    font-size: clamp(0.9rem, 1vw, 1rem);
-    line-height: 1.4;
-    color: #6b7280;
-
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;   /* Máx 3 líneas */
-    -webkit-box-orient: vertical;
-}
-
-/* CONTACTO */
-.contactos {
-    display: flex;
-    min-height: 40vh;
-}
-
-.cajaC {
-    width: 50%;
-    height: 50vh;
-    padding: 20px;
-
-    background: rgba(255, 255, 255, 0.95);
-    text-align: center;
-}
-
-iframe {
-    width: 50%;
-    height: 50vh;
-    border: none;
-}
-
-/* ESPACIADOR */
-.espacio {
-    width: 100%;
-    height: 5vh;
-}
-
-/* BOTONES REDES */
-.boton {
-    width: 50px;
-    height: 50px;
-    display: inline-block;
-
-    background-size: 60%;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    border-radius: 50%;
-    background-color: #f1f5f9;
-
-    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-    transition: all 0.3s ease;
-}
-
-.boton:hover {
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-}
-
-.boton-whatsapp {
-    background-image: url(image2.png);
-}
-
-.boton-facebook {
-    background-image: url(image1.png);
-}
-
-.boton-gmail {
-    background-image: url(image.png);
-}
-
-/* ABOUT */
-.aboutMe {
-    width: 100%;
-    height: 45vh;
-    padding: 20px;
-
-    background: rgba(255, 255, 255, 0.95);
-    text-align: center;
-}
-
-.modal-galeria {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.95);
-  display: none;
-  z-index: 9999;
-  overflow-y: auto;
-  padding: 40px;
-}
-
-.galeria-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-}
-
-.galeria-grid img {
-  width: 100%;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: transform 0.3s;
-}
-
-.galeria-grid img:hover {
-  transform: scale(1.05);
-}
-
-.cerrar {
-  position: fixed;
-  top: 20px;
-  right: 30px;
-  font-size: 40px;
-  color: white;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.contactos {
-    display: flex;
-    flex-direction: column;          /* apila en móvil */
-    min-height: auto;
 }
 
 .cajaC,
 iframe {
     width: 100%;
-    min-height: 40vh;
+    min-height: 45vh;
 }
 
 @media (min-width: 768px) {
     .contactos {
         flex-direction: row;
     }
-    
     .cajaC,
     iframe {
         width: 50%;
     }
 }
 
-@media (max-width: 600px) {
-    h1 { font-size: 2.2rem; }
-    p  { font-size: 1rem; }
-    .boton-redireccion { padding: 12px 30px; font-size: 1.1rem; }
+/* Evita scroll horizontal fantasma */
+body, .tarjetas, .carousel {
+    -webkit-overflow-scrolling: touch; /* smooth scroll en iOS */
 }
+
 
 
 
