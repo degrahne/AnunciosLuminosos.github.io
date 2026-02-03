@@ -47,7 +47,7 @@ p {
     height: 45vh;
     width: 60%;
     background: url(imagen.jpeg) center center / contain no-repeat;
-    /*background-size: 100% 100%;*/
+    background-size: 100% 100%;
 }
 
 /* CONTENEDOR HERO */
@@ -298,6 +298,7 @@ iframe {
   cursor: pointer;
   font-weight: bold;
 }
+
 
 
 
