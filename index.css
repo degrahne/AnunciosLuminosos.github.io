@@ -114,7 +114,7 @@ p {
 
     .contenedor {
         width: 42%;
-        max-width: 520px;
+        max-width: 100%;
         padding: 3.5rem 2.5rem;
         margin: 0;
         justify-content: center;
@@ -139,7 +139,7 @@ p {
     width: 100%;
     min-height: 50vh;           /* baja un poco más si quieres */
     margin: 2.5rem 0;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -156,7 +156,7 @@ p {
     overflow: hidden;
     position: relative;
     border-radius: 16px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 25px rgb(255, 255, 255);
 }
 
 .carousel-track {
@@ -172,7 +172,7 @@ p {
     object-fit: contain;
     object-position: center;
     flex-shrink: 0;
-    background: #f8fafc;        /* fondo claro si hay huecos, opcional */
+    background: #f8fafc00;        /* fondo claro si hay huecos, opcional */
 }
 /* ==========================================================================
    TARJETAS (mantenido casi igual)
@@ -309,6 +309,15 @@ iframe {
     text-align: center;
 }
 
+.presentacion {
+    width: 100%;
+    min-height: 45vh;
+    padding: 2rem 1.2rem;
+    background: rgba(255, 255, 255, 0);
+    color: #f1f5f9;
+    text-align: center;
+}
+
 /* Modal galería (si lo usas) */
 .modal-galeria {
     position: fixed;
@@ -353,27 +362,4 @@ iframe {
     display: flex;
     justify-content: center; /* Centra horizontalmente */
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
