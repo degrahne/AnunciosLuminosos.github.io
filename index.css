@@ -55,7 +55,7 @@ p {
     width: 100%;
     height: auto;
     min-height: 85px;
-    background: url(imagen.jpeg) center top / contain no-repeat;
+    background: url(imagen1.jpeg) center top / contain no-repeat;
     flex-shrink: 0;
 }
 
@@ -353,6 +353,7 @@ iframe {
     display: flex;
     justify-content: center; /* Centra horizontalmente */
 }
+
 
 
 
