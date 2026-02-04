@@ -172,7 +172,7 @@ p {
     object-fit: contain;
     object-position: center;
     flex-shrink: 0;
-    background: #f8fafc00;        /* fondo claro si hay huecos, opcional */
+    background: rgba(255, 255, 255, 0);        /* fondo claro si hay huecos, opcional */
 }
 /* ==========================================================================
    TARJETAS (mantenido casi igual)
@@ -362,5 +362,6 @@ iframe {
     display: flex;
     justify-content: center; /* Centra horizontalmente */
 }
+
 
 
